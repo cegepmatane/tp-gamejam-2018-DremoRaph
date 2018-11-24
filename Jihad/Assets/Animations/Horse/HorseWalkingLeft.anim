@@ -5,7 +5,7 @@ AnimationClip:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: WalkingDown
+  m_Name: HorseWalkingLeft
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -19,11 +19,11 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: 21300102, guid: 274195750c5de994daa83b4bd81ea65b, type: 3}
+      value: {fileID: 21300126, guid: 274195750c5de994daa83b4bd81ea65b, type: 3}
     - time: 0.1
-      value: {fileID: 21300104, guid: 274195750c5de994daa83b4bd81ea65b, type: 3}
+      value: {fileID: 21300128, guid: 274195750c5de994daa83b4bd81ea65b, type: 3}
     - time: 0.2
-      value: {fileID: 21300106, guid: 274195750c5de994daa83b4bd81ea65b, type: 3}
+      value: {fileID: 21300130, guid: 274195750c5de994daa83b4bd81ea65b, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -43,9 +43,9 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: 21300102, guid: 274195750c5de994daa83b4bd81ea65b, type: 3}
-    - {fileID: 21300104, guid: 274195750c5de994daa83b4bd81ea65b, type: 3}
-    - {fileID: 21300106, guid: 274195750c5de994daa83b4bd81ea65b, type: 3}
+    - {fileID: 21300126, guid: 274195750c5de994daa83b4bd81ea65b, type: 3}
+    - {fileID: 21300128, guid: 274195750c5de994daa83b4bd81ea65b, type: 3}
+    - {fileID: 21300130, guid: 274195750c5de994daa83b4bd81ea65b, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
