@@ -15,7 +15,6 @@ namespace CompleteProject
         public GameObject destinationPoint;
         public MapGrid grid;
         
-        private Animator anim;
         private PlayerController playerCtrl;
         //private NavMeshAgent navMeshAgent;
         private Transform targetedEnemy;
@@ -28,7 +27,6 @@ namespace CompleteProject
         // Use this for initialization
         void Awake()
         {
-            anim = GetComponent<Animator>();
             cam = GetComponent<Camera>();
             playerCtrl = GetComponent<PlayerController>();
             //navMeshAgent = GetComponent<NavMeshAgent>();
@@ -40,18 +38,16 @@ namespace CompleteProject
             if (Input.GetButtonDown("Fire2"))
             {
                 Vector2 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-               // MapGrid.GridPoint coordinate = grid.WorldPointToGridPoint(mouseWorldPos);
-
 
                 destinationPoint.transform.position = mouseWorldPos;
                 playerCtrl.InitPathfinding();
             }
 
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
+            
             if (Input.GetButtonDown("Fire1"))
             {
-
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                RaycastHit hit;
                 if (Physics.Raycast(ray, out hit, 100))
                 {
                     destinationPoint.transform.position = hit.point;

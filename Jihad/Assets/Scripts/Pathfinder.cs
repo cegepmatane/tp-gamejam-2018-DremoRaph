@@ -7,7 +7,7 @@ using System;
 
 public class Pathfinder : MonoBehaviour {
 
-    public Transform startTransform, endTransform;
+    public Transform endTransform;
     public MapGrid grid;
     public bool DebugMode = true;
 
@@ -76,6 +76,7 @@ public class Pathfinder : MonoBehaviour {
             if(t_openList.Count == 0)
             {
                 Debug.LogError("nopath");
+                return null;
             }
 
             int minF = t_openList.Min(t => t.f);
@@ -109,7 +110,7 @@ public class Pathfinder : MonoBehaviour {
             }
         }
         GameObject obj = new GameObject();
-        Path t_path = obj.AddComponent<Path>();
+        Path t_path = new Path();
 
         if (endNode.parent != null)
         {
@@ -128,7 +129,6 @@ public class Pathfinder : MonoBehaviour {
         }
 
         currentPath = t_path;
-        Destroy(obj);
         return t_path;
     }
 

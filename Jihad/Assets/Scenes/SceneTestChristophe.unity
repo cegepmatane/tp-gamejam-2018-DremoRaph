@@ -2540,7 +2540,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a11f60c44d9edd744937c6d7c9aa6a91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startTransform: {fileID: 1267758108}
+  startTransform: {fileID: 0}
   endTransform: {fileID: 1973548612}
   grid: {fileID: 798240428}
   DebugMode: 1
@@ -7668,49 +7668,49 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4576076759075212, guid: d3c203072cd2bcb428e1aa1aece314b2, type: 2}
+    - target: {fileID: 4938069818920908, guid: d3c203072cd2bcb428e1aa1aece314b2, type: 2}
       propertyPath: m_LocalPosition.x
       value: -5.61
       objectReference: {fileID: 0}
-    - target: {fileID: 4576076759075212, guid: d3c203072cd2bcb428e1aa1aece314b2, type: 2}
+    - target: {fileID: 4938069818920908, guid: d3c203072cd2bcb428e1aa1aece314b2, type: 2}
       propertyPath: m_LocalPosition.y
       value: 0.32
       objectReference: {fileID: 0}
-    - target: {fileID: 4576076759075212, guid: d3c203072cd2bcb428e1aa1aece314b2, type: 2}
+    - target: {fileID: 4938069818920908, guid: d3c203072cd2bcb428e1aa1aece314b2, type: 2}
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4576076759075212, guid: d3c203072cd2bcb428e1aa1aece314b2, type: 2}
+    - target: {fileID: 4938069818920908, guid: d3c203072cd2bcb428e1aa1aece314b2, type: 2}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4576076759075212, guid: d3c203072cd2bcb428e1aa1aece314b2, type: 2}
+    - target: {fileID: 4938069818920908, guid: d3c203072cd2bcb428e1aa1aece314b2, type: 2}
       propertyPath: m_LocalRotation.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4576076759075212, guid: d3c203072cd2bcb428e1aa1aece314b2, type: 2}
+    - target: {fileID: 4938069818920908, guid: d3c203072cd2bcb428e1aa1aece314b2, type: 2}
       propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4576076759075212, guid: d3c203072cd2bcb428e1aa1aece314b2, type: 2}
+    - target: {fileID: 4938069818920908, guid: d3c203072cd2bcb428e1aa1aece314b2, type: 2}
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 4576076759075212, guid: d3c203072cd2bcb428e1aa1aece314b2, type: 2}
+    - target: {fileID: 4938069818920908, guid: d3c203072cd2bcb428e1aa1aece314b2, type: 2}
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114411022074629550, guid: d3c203072cd2bcb428e1aa1aece314b2,
+    - target: {fileID: 114077861049228486, guid: d3c203072cd2bcb428e1aa1aece314b2,
         type: 2}
       propertyPath: destinationPoint
       value: 
       objectReference: {fileID: 1973548611}
-    - target: {fileID: 114411022074629550, guid: d3c203072cd2bcb428e1aa1aece314b2,
+    - target: {fileID: 114077861049228486, guid: d3c203072cd2bcb428e1aa1aece314b2,
         type: 2}
       propertyPath: grid
       value: 
       objectReference: {fileID: 798240428}
-    - target: {fileID: 114411022074629550, guid: d3c203072cd2bcb428e1aa1aece314b2,
+    - target: {fileID: 114077861049228486, guid: d3c203072cd2bcb428e1aa1aece314b2,
         type: 2}
       propertyPath: cam
       value: 
@@ -8168,11 +8168,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!4 &1267758108 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4008639841581322, guid: d3c203072cd2bcb428e1aa1aece314b2,
-    type: 2}
-  m_PrefabInternal: {fileID: 1158159751}
 --- !u!1 &1286362993
 GameObject:
   m_ObjectHideFlags: 0
