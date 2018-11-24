@@ -4,16 +4,13 @@ using System.Collections;
 
 public class EnemyAttack : MonoBehaviour
 {
-    public float timeBetweenAttacks = 0.5f;     // The time in seconds between each attack.
-    public int attackDamage = 10;               // The amount of health taken away per attack.
-
+    public int explosiveMultiplier = 1;               // The amount of health taken away per attack.
 
     Animator anim;                              // Reference to the animator component.
     GameObject player;                          // Reference to the player GameObject.
     PlayerHealth playerHealth;                  // Reference to the player's health.
     EnemyHealth enemyHealth;                    // Reference to this enemy's health.
     bool playerInRange;                         // Whether player is within the trigger collider and can be attacked.
-    float timer;                                // Timer for counting up to the next attack.
 
 
     void Awake()
@@ -31,54 +28,29 @@ public class EnemyAttack : MonoBehaviour
         // If the entering collider is the player...
         if (other.gameObject == player)
         {
-            // ... the player is in range.
-            playerInRange = true;
-        }
-    }
-
-
-    void OnTriggerExit(Collider other)
-    {
-        // If the exiting collider is the player...
-        if (other.gameObject == player)
-        {
-            // ... the player is no longer in range.
-            playerInRange = false;
+            Explosion();
         }
     }
 
 
     void Update()
     {
+        float distance = (this.transform.position - player.transform.position).magnitude;
         // Add the time since Update was last called to the timer.
-        timer += Time.deltaTime;
-
-        // If the timer exceeds the time between attacks, the player is in range and this enemy is alive...
-        if (timer >= timeBetweenAttacks && playerInRange && enemyHealth.currentHealth > 0)
-        {
-            // ... attack.
-            Attack();
-        }
-
-        // If the player has zero or less health...
-        if (playerHealth.currentHealth <= 0)
-        {
-            // ... tell the animator the player is dead.
-            anim.SetTrigger("PlayerDead");
-        }
+        if(distance <= 1.5f) Explosion();
     }
 
 
-    void Attack()
+    public void Explosion()
     {
-        // Reset the timer.
-        timer = 0f;
-
-        // If the player has health to lose...
-        if (playerHealth.currentHealth > 0)
+        // playerHealth.TakeDamage(explosiveMultiplier);
+        Collider[] hitColliders = Physics.OverlapSphere(this.transform.position, 3f);
+        int i = 0;
+        while (i < hitColliders.Length)
         {
-            // ... damage the player.
-            playerHealth.TakeDamage(attackDamage);
+            float distance = (this.transform.position - hitColliders[i].transform.position).magnitude;
+            hitColliders[i].SendMessage("AddDamage", distance * explosiveMultiplier);
+            i++;
         }
     }
 }

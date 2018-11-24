@@ -10,7 +10,6 @@ namespace CompleteProject
 
         public float shootDistance = 10f;
         public float shootRate = .5f;
-        public PlayerShooting shootingScript;
         public GameObject destinationPoint;
         public MapGrid grid;
         public Camera cam;
@@ -45,13 +44,11 @@ namespace CompleteProject
 
                 Plane playerPlane = new Plane(Vector3.back, transform.position);
                 float d;
-                Ray playerToClick;
                 if (playerPlane.Raycast(mseRay, out d))
                 {
                     Vector3 hitPt = mseRay.GetPoint(d);
 
                     Debug.DrawRay(transform.position, hitPt - transform.position, Color.red, 1f);
-                    playerToClick = new Ray(transform.position, hitPt - transform.position);
                     RaycastHit2D hit = Physics2D.Raycast(transform.position, hitPt - transform.position);
                     if ( hit )
                     {
