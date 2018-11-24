@@ -38,8 +38,6 @@ public class PlayerController : MonoBehaviour {
         if (destinationReached) return;
         if (AIActive)
             MovePathfinding();
-        else
-            MoveRaycast();
 
     }
 
@@ -68,8 +66,4 @@ public class PlayerController : MonoBehaviour {
             }
     }
 
-    public void MoveRaycast()
-    {
-
-    }
 }

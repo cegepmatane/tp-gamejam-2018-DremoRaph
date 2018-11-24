@@ -47,6 +47,11 @@ public class MapGrid : MonoBehaviour
 
             return true;
         }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
     }
 
     public float CellHeight = 1f;

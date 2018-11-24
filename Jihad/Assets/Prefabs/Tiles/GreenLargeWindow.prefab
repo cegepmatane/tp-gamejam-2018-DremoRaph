@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4518332835417880}
   - component: {fileID: 212156464712789346}
+  - component: {fileID: 114864315570263402}
   m_Layer: 0
   m_Name: GreenLargeWindow
   m_TagString: Untagged
@@ -40,6 +41,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114864315570263402
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1791287185337924}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf1cfd116b35e28468b16bade47de938, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseCost: -1
+  posX: 0
+  posY: 0
 --- !u!212 &212156464712789346
 SpriteRenderer:
   m_ObjectHideFlags: 1

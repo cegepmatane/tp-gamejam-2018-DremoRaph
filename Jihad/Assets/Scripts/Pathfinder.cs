@@ -128,6 +128,7 @@ public class Pathfinder : MonoBehaviour {
         }
 
         currentPath = t_path;
+        Destroy(obj);
         return t_path;
     }
 
