@@ -12,18 +12,9 @@ public class Pathfinder : MonoBehaviour {
     public bool DebugMode = true;
 
     private Tile m_endTile;
-    private bool nodesInit = false;
     public Node[,] m_nodes;
     private Path currentPath;
     private bool pathset = false;
-
-    private void Start()
-    {
-        MapGrid.GridPoint t_endGridPoint = grid.WorldPointToGridPoint(endTransform.position);
-        m_endTile = grid.GetTileFromGrid(t_endGridPoint);
-
-        InitNodes(grid.GridSize, grid.GridSize);
-    }
 
     private void InitNodes(int x, int y)
     {
@@ -41,14 +32,18 @@ public class Pathfinder : MonoBehaviour {
         foreach (Node n in m_nodes)
             if (n == null) continue;
             else n.h = Heuristic(n.tile.gridPoint.x, n.tile.gridPoint.y, m_endTile.gridPoint.x, m_endTile.gridPoint.y);
-
-        nodesInit = true;
+        
     }
 
-    public Path GetPath(Transform a_Enemy)
+    public Path GetPath(Transform a_Entity)
     {
-        MapGrid.GridPoint t_startGridPoint = grid.WorldPointToGridPoint(a_Enemy.position);
+        MapGrid.GridPoint t_startGridPoint = grid.WorldPointToGridPoint(a_Entity.position);
         Tile t_startTile = grid.GetTileFromGrid(t_startGridPoint);
+
+        MapGrid.GridPoint t_endGridPoint = grid.WorldPointToGridPoint(endTransform.position);
+        m_endTile = grid.GetTileFromGrid(t_endGridPoint);
+
+        InitNodes(grid.GridSize, grid.GridSize);
 
         if (t_startTile == null)
         {
@@ -113,7 +108,8 @@ public class Pathfinder : MonoBehaviour {
                 }
             }
         }
-        Path t_path = new Path();
+        GameObject obj = new GameObject();
+        Path t_path = obj.AddComponent<Path>();
 
         if (endNode.parent != null)
         {
@@ -132,7 +128,6 @@ public class Pathfinder : MonoBehaviour {
         }
 
         currentPath = t_path;
-        pathset = true;
         return t_path;
     }
 

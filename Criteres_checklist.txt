@@ -1,6 +1,6 @@
 DONE	Vous devez programmer un générateur de niveau de jeu; 30min
 	    Votre jeu devra générer aléatoirement au moins un niveau; 2h
-pending Votre jeu devra contenir un écran d’accueil.  Cet écran doit brièvement présenter votre jeu et nous permettre de débuter une partie; 10min
+DONE Votre jeu devra contenir un écran d’accueil.  Cet écran doit brièvement présenter votre jeu et nous permettre de débuter une partie; 10min
 	    Votre jeu devra aussi contenir un écran de fin de partie affichant les résultats de notre partie (victoire, défaite, pointage, etc.) avec la possibilité de débuter une nouvelle partie; 30min
 	    Votre jeu devra contenir des ennemis qui doivent avoir une certaine intelligence.  Ces derniers doivent suivre un chemin en particulier.  Basez-vous sur l’exemple fait en classe; 1h
 DONE    Sprites de vos tuiles doivent provenir d’une feuille de sprite dont le fond est transparent (vous pouvez rechercher des feuilles dont le fond est transparent ou tout simplement appliquer vous-même la transparence à votre feuille de sprite). 1h
