@@ -15,6 +15,7 @@ public class Pathfinder : MonoBehaviour {
     private bool nodesInit = false;
     public Node[,] m_nodes;
     private Path currentPath;
+    private bool pathset = false;
 
     private void Start()
     {
@@ -131,6 +132,7 @@ public class Pathfinder : MonoBehaviour {
         }
 
         currentPath = t_path;
+        pathset = true;
         return t_path;
     }
 
@@ -162,7 +164,7 @@ public class Pathfinder : MonoBehaviour {
 
     private void OnDrawGizmos()
     {
-        
+        if (!pathset) return;
         Gizmos.color = Color.cyan;
 
         for (int i = 0; i < currentPath.tiles.Count - 1; i++)
