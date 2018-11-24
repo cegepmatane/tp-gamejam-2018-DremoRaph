@@ -11,25 +11,22 @@ namespace CompleteProject
         public float shootDistance = 10f;
         public float shootRate = .5f;
         public PlayerShooting shootingScript;
-       
         public GameObject destinationPoint;
         public MapGrid grid;
-        
+        public Camera cam;
+
         private PlayerController playerCtrl;
-        //private NavMeshAgent navMeshAgent;
         private Transform targetedEnemy;
         private Ray shootRay;
         private RaycastHit shootHit;
         private bool enemyClicked;
         private float nextFire;
-        public Camera cam;
-
+        
         // Use this for initialization
         void Awake()
         {
             cam = GetComponent<Camera>();
             playerCtrl = GetComponent<PlayerController>();
-            //navMeshAgent = GetComponent<NavMeshAgent>();
         }
 
         // Update is called once per frame
@@ -38,41 +35,52 @@ namespace CompleteProject
             if (Input.GetButtonDown("Fire2"))
             {
                 Vector2 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-
                 destinationPoint.transform.position = mouseWorldPos;
                 playerCtrl.InitPathfinding();
             }
-
             
             if (Input.GetButtonDown("Fire1"))
             {
-                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                RaycastHit hit;
-                if (Physics.Raycast(ray, out hit, 100))
+                Ray mseRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+                Plane playerPlane = new Plane(Vector3.back, transform.position);
+                float d;
+                Ray playerToClick;
+                if (playerPlane.Raycast(mseRay, out d))
                 {
-                    destinationPoint.transform.position = hit.point;
-                    if (hit.collider.CompareTag("Wall"))
+                    Vector3 hitPt = mseRay.GetPoint(d);
+
+                    Debug.DrawRay(transform.position, hitPt - transform.position, Color.red, 1f);
+                    playerToClick = new Ray(transform.position, hitPt - transform.position);
+                    RaycastHit2D hit = Physics2D.Raycast(transform.position, hitPt - transform.position);
+                    if ( hit )
                     {
-                        targetedEnemy = hit.transform;
-                        enemyClicked = true;
-                    }
+                        if (hit.collider.CompareTag("Enemy"))
+                        {
+                            targetedEnemy = hit.transform;
+                            Debug.Log("Enemy");
+                            enemyClicked = true;
+                        }
 
-                    else
-                    {
-                        enemyClicked = false;
+                        else
+                        {
+                            enemyClicked = false;
 
-                        destinationPoint.transform.position = hit.point;
+                            destinationPoint.transform.position = hit.point;
+                        }
 
-                        //navMeshAgent.destination = hit.point;
-                        //navMeshAgent.isStopped = false;
+                        if (hit.collider.CompareTag("Wall"))
+                        {
+                            Debug.Log("Wall");
+                        }
                     }
                 }
             }
 
-            if (enemyClicked)
-            {
-                //MoveAndShoot();
-            }
+            //if (enemyClicked)
+            //{
+            //    targetedEnemy.
+            //}
 
             //if (navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance)
             //{

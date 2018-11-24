@@ -18,9 +18,6 @@ public class MapGrid : MonoBehaviour
             t_Tile.gridPoint = WorldPointToGridPoint(t_Tile.transform.position);
             tableauTiles[t_Tile.gridPoint.x, t_Tile.gridPoint.y] = t_Tile;
         }
-
-        
-
     }
 
     public Tile GetTileFromGrid(GridPoint a_gridPoint)

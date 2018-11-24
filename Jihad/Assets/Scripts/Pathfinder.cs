@@ -109,7 +109,7 @@ public class Pathfinder : MonoBehaviour {
                 }
             }
         }
-        GameObject obj = new GameObject();
+
         Path t_path = new Path();
 
         if (endNode.parent != null)
