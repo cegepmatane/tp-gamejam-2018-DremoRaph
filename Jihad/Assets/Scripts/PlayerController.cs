@@ -24,7 +24,7 @@ public class PlayerController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        m_pathfinder = GameObject.FindObjectOfType<Pathfinder>();
+        m_pathfinder = GetComponentInChildren<Pathfinder>();
         
         InitPathfinding();
         anim = sprite.GetComponent<Animator>();
