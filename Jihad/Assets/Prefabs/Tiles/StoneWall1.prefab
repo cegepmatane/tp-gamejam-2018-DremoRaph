@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4719718861587204}
   - component: {fileID: 212005813908595388}
   m_Layer: 0
-  m_Name: StoneWall
+  m_Name: StoneWall1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

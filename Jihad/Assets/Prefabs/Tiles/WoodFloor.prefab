@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4620521844267224}
   - component: {fileID: 212738353907048998}
   m_Layer: 0
-  m_Name: PlancherBois
+  m_Name: WoodFloor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

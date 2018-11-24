@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4546122996367638}
   - component: {fileID: 212347124582075710}
   m_Layer: 0
-  m_Name: StoneDoubleDoor
+  m_Name: StoneWindow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

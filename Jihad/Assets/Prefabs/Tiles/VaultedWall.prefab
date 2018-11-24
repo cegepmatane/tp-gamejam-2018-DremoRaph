@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4269460697427830}
   - component: {fileID: 212626383738264304}
   m_Layer: 0
-  m_Name: "MurVout\xE9"
+  m_Name: VaultedWall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4809985691864604}
   - component: {fileID: 212244957697121642}
   m_Layer: 0
-  m_Name: "PlancherBois_fonc\xE9"
+  m_Name: WoodFloor_Dark
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
