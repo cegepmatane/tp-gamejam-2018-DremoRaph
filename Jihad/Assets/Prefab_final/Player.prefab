@@ -119,7 +119,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.039391562, y: 0.01074326}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -130,7 +130,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.3482488, y: 0.87824416}
   m_EdgeRadius: 0
 --- !u!82 &82887176496784064
 AudioSource:
@@ -140,9 +140,10 @@ AudioSource:
   m_GameObject: {fileID: 1422036467704418}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  OutputAudioMixerGroup: {fileID: 24300002, guid: ea5fe4abd3a9d6e49a56ad4d7f908984,
+    type: 2}
+  m_audioClip: {fileID: 8300000, guid: a4eb917b88b4f704781272ab56503215, type: 3}
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -302,7 +303,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a11f60c44d9edd744937c6d7c9aa6a91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  endTransform: {fileID: 0}
   grid: {fileID: 0}
   DebugMode: 1
 --- !u!114 &114859147377255040
