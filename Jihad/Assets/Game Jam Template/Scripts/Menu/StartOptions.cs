@@ -35,8 +35,6 @@ public class StartOptions : MonoBehaviour {
 
         //Get a reference to the CanvasGroup attached to the main menu so that we can fade it's alpha
         menuCanvasGroup = GetComponent<CanvasGroup>();
-
-        fadeImage.color = menuSettingsData.sceneChangeFadeColor;
 	}
 
 
@@ -52,10 +50,13 @@ public class StartOptions : MonoBehaviour {
 		//If changeScenes is true, start fading and change scenes halfway through animation when screen is blocked by FadeImage
 		if (menuSettingsData.nextSceneIndex != 0) 
 		{
-			//Use invoke to delay calling of LoadDelayed by half the length of fadeColorAnimationClip
-			Invoke ("LoadDelayed", menuSettingsData.menuFadeTime);
+            inMainMenu = false;
 
-            StartCoroutine(FadeCanvasGroupAlpha(0f, 1f, fadeOutImageCanvasGroup));
+            //Hide the main menu UI element
+            showPanels.HideMenu();
+            //Use invoke to delay calling of LoadDelayed by half the length of fadeColorAnimationClip
+            SceneManager.LoadScene(1, LoadSceneMode.Single);
+            
 
         } 
 

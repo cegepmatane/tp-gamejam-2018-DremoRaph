@@ -21,7 +21,6 @@ public class PlayerHealth : MonoBehaviour
     {
         playerAudio = GetComponent<AudioSource>();
         healthSlider = GameObject.FindGameObjectWithTag("Hp").GetComponent<Slider>();
-        damageImage = GameObject.FindGameObjectWithTag("Yolo").GetComponent<Image>();
 
         // Set the initial health of the player.
         currentHealth = startingHealth;
