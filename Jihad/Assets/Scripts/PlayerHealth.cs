@@ -67,10 +67,17 @@ public class PlayerHealth : MonoBehaviour
         // Set the death flag so this function won't be called again.
         isDead = true;
 
-        //boxCollider.isTrigger = true;
+        GetComponent<SpriteRenderer>().color = Color.black;
+        GetComponent<PlayerShooting>().enabled = false;
+        GetComponent<PlayerController>().enabled = false;
+        GetComponent<ClickToMove>().enabled = false;
 
         // Set the audiosource to play the death clip and play it (this will stop the hurt sound from playing).
         playerAudio.clip = deathClip;
         playerAudio.Play();
+
+        FindObjectOfType<ResetManager>().ShowEndPanel();
+
+        gameObject.SetActive(false);
     }
 }
