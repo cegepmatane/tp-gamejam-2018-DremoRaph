@@ -10,6 +10,7 @@ public class Pathfinder : MonoBehaviour {
     public Transform endTransform;
     public MapGrid grid;
     public bool DebugMode = true;
+    public GameObject transformObj;
 
     private Tile m_endTile;
     public Node[,] m_nodes;
@@ -21,7 +22,10 @@ public class Pathfinder : MonoBehaviour {
         if (endTransform == null)
         {
             GameObject obj = new GameObject();
+            obj.name = "DestinationPlayer";
             endTransform = obj.transform;
+
+            transformObj = obj;
         }
 
         if(grid == null)
