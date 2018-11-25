@@ -6,12 +6,21 @@ public class ChunkLoader : MonoBehaviour {
 
     public GameObject[] UsableChunkList;
     public GameObject Container;
+    //public GameObject MapGridContainer;
+    public GameObject MapGridPrefab;
+    public GameObject CameraPrefab;
+    private MapGrid ChunkMapGrid;
+    public GameObject Player;
+    
     private float[,] ChunkPositionList;
-    
-    
-    
+
+    private void Awake()
+    {
+        //ChunkMapGrid = MapGridContainer.GetComponent<MapGrid>();
+    }
+
     // Use this for initialization
-	void Start () {
+    void Start () {
 
         ChunkPositionList = new float[8, 8];
         Debug.Log(ChunkPositionList[0, 0]);
@@ -105,11 +114,35 @@ public class ChunkLoader : MonoBehaviour {
 
 
 
+        GenerateMapGrid();
+
 
     }
 
-    // Update is called once per frame
-    void Update () {
-		
-	}
+    public void GenerateMapGrid()
+    {
+        GameObject t_MapGrid = Instantiate(MapGridPrefab, new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
+        ChunkMapGrid = t_MapGrid.GetComponent<MapGrid>();
+        ChunkMapGrid.Container = this.Container;
+        ChunkMapGrid.Activate();
+        GeneratePlayer();
+    }
+
+    public void GeneratePlayer()
+    {
+        GameObject t_NewPlayer = Instantiate(Player, new Vector3(5, 5, 0), Quaternion.identity) as GameObject;
+
+        GameObject t_NewCam = Instantiate(CameraPrefab, new Vector3(5, 5, -10), Quaternion.identity) as GameObject;
+        CompleteCameraController CameraController = t_NewCam.GetComponent<CompleteCameraController>();
+        CameraController.player = t_NewPlayer;
+        
+        ClickToMove t_ClickToMove = t_NewPlayer.GetComponent<ClickToMove>();
+        Pathfinder t_PathFinder = t_NewPlayer.GetComponentInChildren<Pathfinder>();
+        t_PathFinder.grid = ChunkMapGrid;
+        t_ClickToMove.destinationPoint = t_PathFinder.transformObj;
+        
+        t_ClickToMove.grid = ChunkMapGrid;
+    }
+
+    
 }
