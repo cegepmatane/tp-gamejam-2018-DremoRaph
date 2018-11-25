@@ -51,12 +51,9 @@ public class StartOptions : MonoBehaviour {
 		if (menuSettingsData.nextSceneIndex != 0) 
 		{
             inMainMenu = false;
-
-            //Hide the main menu UI element
-            showPanels.HideMenu();
-            //Use invoke to delay calling of LoadDelayed by half the length of fadeColorAnimationClip
-            SceneManager.LoadScene(1, LoadSceneMode.Single);
             
+            showPanels.HideMenu();
+            SceneManager.LoadScene(1, LoadSceneMode.Single);
 
         } 
 
