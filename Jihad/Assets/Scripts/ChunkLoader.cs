@@ -9,6 +9,7 @@ public class ChunkLoader : MonoBehaviour {
     //public GameObject MapGridContainer;
     public GameObject MapGridPrefab;
     public GameObject CameraPrefab;
+    public GameObject SpawnerPrefab;
     private MapGrid ChunkMapGrid;
     public GameObject Player;
     
@@ -49,6 +50,7 @@ public class ChunkLoader : MonoBehaviour {
                     {
                         t_NewChunk = Instantiate(UsableChunkList[1], new Vector3((i * 10) - 35, (k * 10) - 35, 0), Quaternion.identity) as GameObject;
                         t_NewChunk.transform.parent = Container.transform;
+                        continue;
 
                     }
                     //Si le chunk en dessous est une route horizontale, on ne peut pas générer ni d'intersection, ni de route horizontale
@@ -85,7 +87,7 @@ public class ChunkLoader : MonoBehaviour {
                     //Si le chunk à gauche est une route allant vers le haut, on génère un chunk de batiment sur son long
                     if (ChunkPositionList[i - 1, k] == 2)
                     {
-                        t_NewChunk = Instantiate(UsableChunkList[2], new Vector3((i * 10) - 35, (k * 10) - 35, 0), Quaternion.Euler(0, 0, 90)) as GameObject;
+                        t_NewChunk = Instantiate(UsableChunkList[2], new Vector3((i * 10) - 35, (k * 10) - 35, 0), Quaternion.identity) as GameObject;
                         t_NewChunk.transform.parent = Container.transform;
                         ChunkPositionList[i, k] = 3;
                         continue;
@@ -142,6 +144,13 @@ public class ChunkLoader : MonoBehaviour {
         t_ClickToMove.destinationPoint = t_PathFinder.GetTransformObj();
         
         t_ClickToMove.grid = ChunkMapGrid;
+
+        GenerateEnemySpawner();
+    }
+
+    public void GenerateEnemySpawner()
+    {
+        GameObject t_NewSpawner = Instantiate(SpawnerPrefab, new Vector3(0,0,0), Quaternion.identity) as GameObject;
     }
 
     
