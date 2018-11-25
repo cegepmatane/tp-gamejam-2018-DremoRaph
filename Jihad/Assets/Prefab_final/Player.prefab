@@ -266,7 +266,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1422036467704418}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fd6cf217ffa688d4c969db7ec010d2bf, type: 3}
   m_Name: 
@@ -304,7 +304,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   grid: {fileID: 0}
-  DebugMode: 1
+  DebugMode: 0
 --- !u!114 &114859147377255040
 MonoBehaviour:
   m_ObjectHideFlags: 1
