@@ -23,6 +23,8 @@ public class Pathfinder : MonoBehaviour {
         {
 
             transformObj = new GameObject();
+            transformObj.name = "DestinationPlayer";
+            transformObj.transform.position = transform.position;
             endTransform = transformObj.transform;
 
         }
