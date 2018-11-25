@@ -4,9 +4,8 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour {
 
-   public int count, delay, interval;       // Delay on delivery.
-
-    [SerializeField]
+    public int count, delay, interval;       // Delay on delivery.
+    
     private Transform m_SpawnPoint;
     [SerializeField]
     private GameObject m_Enemy;
@@ -15,7 +14,7 @@ public class EnemySpawner : MonoBehaviour {
 
     void Start()
     {
-        //spawnTiles = FindObjectOfType<MapGrid>().GetSpawnTiles();
+        spawnTiles = FindObjectOfType<MapGrid>().GetSpawnTiles();
         StartCoroutine(SpawnEnemy(count, interval, delay));
     }
 

@@ -6,6 +6,7 @@ using UnityEngine;
 public class MapGrid : MonoBehaviour
 {
     private List<Tile> Tiles;
+    private List<Tile> spawnTiles;
     public Tile[,] tableauTiles;
     public GameObject Container;
 
@@ -16,14 +17,21 @@ public class MapGrid : MonoBehaviour
     public void Activate()
     {
         Tiles = new List<Tile>(Container.GetComponentsInChildren<Tile>());
+        spawnTiles = new List<Tile>();
         tableauTiles = new Tile[GridSize, GridSize];
 
         foreach (Tile t_Tile in Tiles)
         {
             t_Tile.gridPoint = WorldPointToGridPoint(t_Tile.transform.position);
             tableauTiles[t_Tile.gridPoint.x, t_Tile.gridPoint.y] = t_Tile;
+            if (t_Tile.baseCost > 0) spawnTiles.Add(t_Tile);
         }
     }
+    public List<Tile> GetSpawnTiles()
+    {
+        return spawnTiles;
+    }
+
     public Tile GetTileFromGrid(GridPoint a_gridPoint)
     {
         return tableauTiles[a_gridPoint.x, a_gridPoint.y];
