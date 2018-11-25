@@ -9,6 +9,7 @@ TagManager:
   - Fire
   - Hp
   - Yolo
+  - DeathScreen
   layers:
   - Default
   - TransparentFX

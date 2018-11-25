@@ -58,18 +58,18 @@ public class PlayerHealth : MonoBehaviour
         
         playerAudio.Play();
         
-        if (currentHealth <= 0 && isDead)
+        if (currentHealth <= 0 && !isDead)
             Death();
         
     }
 
 
-    void Death()
+    public void Death()
     {
         // Set the death flag so this function won't be called again.
         isDead = true;
-
-        GetComponent<SpriteRenderer>().color = Color.black;
+        Debug.Log("Mort : " + isDead);
+        GetComponentInChildren<SpriteRenderer>().color = Color.black;
         GetComponent<PlayerShooting>().enabled = false;
         GetComponent<PlayerController>().enabled = false;
         GetComponent<ClickToMove>().enabled = false;
