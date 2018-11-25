@@ -30,7 +30,7 @@ public class PlayerController : MonoBehaviour
         float speed = (transform.position - this.mLastPosition).magnitude / Time.deltaTime;
         this.mLastPosition = transform.position;
 
-        //anim.SetBool("isWalking", speed > 0.1f ? true: false);
+        anim.SetBool("isWalking", speed > 0.1f ? true: false);
         if (destinationReached) return;
         if (AIActive)
             MovePathfinding();
