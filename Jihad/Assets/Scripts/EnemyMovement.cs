@@ -101,7 +101,7 @@ public class EnemyMovement : MonoBehaviour
             {
                 AIActive = false;
                 destinationReached = true;
-                FollowPlayerIfClose()
+                FollowPlayerIfClose();
             }
         //if (t_direction != Vector2.zero)
         //{
