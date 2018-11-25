@@ -5,10 +5,12 @@ using UnityEngine;
 using UnityEditor;
 using System;
 
-public class Pathfinder : MonoBehaviour {
+public class PathfinderEnemy : MonoBehaviour
+{
 
-    public Transform endTransform;
-    public MapGrid grid;
+    private Vector3 destination;
+    private MapGrid grid;
+    private GameObject player;
     public bool DebugMode = true;
 
     private Tile m_endTile;
@@ -16,23 +18,18 @@ public class Pathfinder : MonoBehaviour {
     private Path currentPath;
     private bool pathset = false;
 
-    public void Start()
+    public void Awake()
     {
-        if (endTransform == null)
-        {
-            GameObject obj = new GameObject();
-            endTransform = obj.transform;
-        }
-
-        if(grid == null)
-            grid = FindObjectOfType<MapGrid>();
+        grid = FindObjectOfType<MapGrid>();
+        player = GameObject.FindGameObjectWithTag("Player");
+        destination = player.transform.position;
     }
 
     private void InitNodes(int x, int y)
     {
         m_nodes = new Node[x, y];
 
-        for (int i = 0; i < grid.GridSize; i++) 
+        for (int i = 0; i < grid.GridSize; i++)
             for (int j = 0; j < grid.GridSize; j++)
             {
                 if (grid.tableauTiles[i, j] == null) continue;
@@ -40,19 +37,19 @@ public class Pathfinder : MonoBehaviour {
                 m_nodes[i, j] = new Node();
                 m_nodes[i, j].tile = grid.tableauTiles[i, j];
             }
-       
+
         foreach (Node n in m_nodes)
             if (n == null) continue;
             else n.h = Heuristic(n.tile.gridPoint.x, n.tile.gridPoint.y, m_endTile.gridPoint.x, m_endTile.gridPoint.y);
-        
+
     }
 
-    public Path GetPath(Transform a_Entity)
+    public Path GetPath(Vector3 destination)
     {
-        MapGrid.GridPoint t_startGridPoint = grid.WorldPointToGridPoint(a_Entity.position);
+        MapGrid.GridPoint t_startGridPoint = grid.WorldPointToGridPoint(transform.position);
         Tile t_startTile = grid.GetTileFromGrid(t_startGridPoint);
 
-        MapGrid.GridPoint t_endGridPoint = grid.WorldPointToGridPoint(endTransform.position);
+        MapGrid.GridPoint t_endGridPoint = grid.WorldPointToGridPoint(destination);
         m_endTile = grid.GetTileFromGrid(t_endGridPoint);
 
         InitNodes(grid.GridSize, grid.GridSize);
@@ -75,7 +72,7 @@ public class Pathfinder : MonoBehaviour {
         }
 
         List<Node> t_openList = new List<Node>();
-        List<Node> t_closedList = new List<Node>();    
+        List<Node> t_closedList = new List<Node>();
 
         Node startNode = m_nodes[t_startTile.gridPoint.x, t_startTile.gridPoint.y];
         Node endNode = m_nodes[m_endTile.gridPoint.x, m_endTile.gridPoint.y];
@@ -83,9 +80,9 @@ public class Pathfinder : MonoBehaviour {
         t_openList.Add(startNode);
 
         bool done = false;
-        while(!done)
+        while (!done)
         {
-            if(t_openList.Count == 0)
+            if (t_openList.Count == 0)
             {
                 Debug.LogError("nopath");
                 return null;
@@ -97,14 +94,14 @@ public class Pathfinder : MonoBehaviour {
             t_openList.Remove(current);
             t_closedList.Add(current);
 
-            if(current.tile == m_endTile)
+            if (current.tile == m_endTile)
             {
                 done = true;
                 break;
             }
 
             List<Node> t_neighbours = GetNeighbours(current);
-            foreach(Node n in t_neighbours)
+            foreach (Node n in t_neighbours)
             {
                 if (n.tile.baseCost == -1 || t_closedList.Contains(n)) continue;
 
@@ -117,7 +114,7 @@ public class Pathfinder : MonoBehaviour {
                     n.f = n.g + n.h;
                     n.parent = current;
 
-                    if(!t_openList.Contains(n)) t_openList.Add(n);
+                    if (!t_openList.Contains(n)) t_openList.Add(n);
                 }
             }
         }
@@ -131,8 +128,8 @@ public class Pathfinder : MonoBehaviour {
             t_path.tiles = new List<Tile>();
 
             current = endNode;
-            while(current != startNode)
-            { 
+            while (current != startNode)
+            {
                 t_path.tiles.Add(current.tile);
                 current = current.parent;
             }
@@ -164,7 +161,7 @@ public class Pathfinder : MonoBehaviour {
 
         for (int i = xMin; i <= xMax; i++)
             for (int j = yMin; j <= yMax; j++)
-                if(m_nodes[i, j] != null)
+                if (m_nodes[i, j] != null)
                     t_list.Add(m_nodes[i, j]);
 
         return t_list;

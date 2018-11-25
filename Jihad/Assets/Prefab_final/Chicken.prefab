@@ -228,7 +228,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 1
   distanceCheck: 0.05
-  player: {fileID: 0}
 --- !u!114 &114100892642968582
 MonoBehaviour:
   m_ObjectHideFlags: 1

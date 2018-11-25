@@ -11,21 +11,26 @@ public class EnemyMovement : MonoBehaviour
     private bool AIActive = true;
     private bool destinationReached = false;
     private Path m_path;
-    private Pathfinder m_pathfinder;
+    private PathfinderEnemy m_pathfinder;
     private Animator anim;
     private MapGrid grid;
 
     private int nextTileID = 1;
 
-    // Use this for initialization
-    void Start()
+    private void Awake()
     {
-        m_pathfinder = GetComponentInChildren<Pathfinder>();
+        m_pathfinder = GetComponentInChildren<PathfinderEnemy>();
         anim = GetComponentInChildren<Animator>();
         grid = FindObjectOfType<MapGrid>();
         player = GameObject.FindGameObjectWithTag("Player");
-        FindNewTarget();
     }
+
+    // Use this for initialization
+    void Start()
+    {
+        InitPathfinding();
+    }
+
 
     // Update is called once per frame
     void Update()
@@ -41,38 +46,37 @@ public class EnemyMovement : MonoBehaviour
 
     }
 
-    public void FindNewTarget()
-    {
-        float distance = (this.transform.position - player.transform.position).magnitude;
-        if (distance <= 6f)
-            m_pathfinder.endTransform.position = player.transform.position;
-        else
-            m_pathfinder.endTransform.position = GetNearbyWalkableTile(transform.position);
+    //public void FindNewTarget()
+    //{
+    //    float distance = (this.transform.position - player.transform.position).magnitude;
+    //    //if (distance <= 6f)
+    //    m_pathfinder.endTransform.position = player.transform.position;
+    //    //else
+    //    //    m_pathfinder.endTransform.position = GetNearbyWalkableTile(transform.position);
 
-        InitPathfinding();
-    }
+    //    InitPathfinding();
+    //}
 
-    public Vector2 GetNearbyWalkableTile(Vector2 position)
-    {
-        bool targetAcquired = false;
-        Vector2 point = new Vector2();
-        while (!targetAcquired)
-        {
-            point = UnityEngine.Random.insideUnitSphere * 5;
-            point += position;
-            
-            MapGrid.GridPoint proutbanane = grid.WorldPointToGridPoint(point);
-            if (grid.tableauTiles[proutbanane.x, proutbanane.y].baseCost >= 0)
-                targetAcquired = true;
-        }
-        
-        return point;
-    }
+    //public Vector3 GetNearbyWalkableTile(Vector3 position)
+    //{
+    //    bool targetAcquired = false;
+    //    Vector3 point = new Vector2();
+    //    while (!targetAcquired)
+    //    {
+    //        point = UnityEngine.Random.insideUnitSphere * 5;
+    //        point += position;
+
+    //        MapGrid.GridPoint proutbanane = grid.WorldPointToGridPoint(point);
+    //        if (grid.tableauTiles[proutbanane.x, proutbanane.y].baseCost >= 0)
+    //            targetAcquired = true;
+    //    }
+
+    //    return point;
+    //}
 
     public void InitPathfinding()
     {
-        m_path = m_pathfinder.GetPath(transform);
-        if (m_path == null) return;
+        m_path = m_pathfinder.GetPath(player.transform.position);
         AIActive = true;
         destinationReached = false;
         nextTileID = 1;
@@ -85,11 +89,6 @@ public class EnemyMovement : MonoBehaviour
 
         Vector2 t_direction = (m_path.tiles[nextTileID].transform.position - this.transform.position);
 
-        //if (t_direction != Vector2.zero)
-        //{
-        //    float angle = Mathf.Atan2(t_direction.y, t_direction.x) * Mathf.Rad2Deg;
-        //    transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-        //}
         transform.Translate(t_direction.normalized * speed * Time.deltaTime);
         float c2 = t_direction.sqrMagnitude;
 
@@ -98,7 +97,12 @@ public class EnemyMovement : MonoBehaviour
             {
                 AIActive = false;
                 destinationReached = true;
-                FindNewTarget();
+                InitPathfinding();
             }
+        //if (t_direction != Vector2.zero)
+        //{
+        //    float angle = Mathf.Atan2(t_direction.y, t_direction.x) * Mathf.Rad2Deg;
+        //    transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        //}
     }
 }
