@@ -67,6 +67,8 @@ public class EnemyHealth : MonoBehaviour
         ScoreManager.score += scoreValue;
         GetComponent<SpriteRenderer>().color = Color.black;
         GetComponent<EnemyMovement>().enabled = false;
+        if (ScoreManager.score >= 128)
+            FindObjectOfType<ResetManager>().ShowWinPanel();
         Destroy(gameObject, 1.5f);
     }
 }

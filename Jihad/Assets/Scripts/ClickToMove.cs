@@ -24,6 +24,9 @@ public class ClickToMove : MonoBehaviour
         if (Input.GetButtonDown("Fire2"))
         {
             Vector2 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            MapGrid.GridPoint point = grid.WorldPointToGridPoint(mouseWorldPos);
+            if(grid.tableauTiles[point.x, point.y].baseCost == -1 ) return;
+
             destinationPoint.transform.position = mouseWorldPos;
             playerCtrl.InitPathfinding();
         }

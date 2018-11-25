@@ -78,7 +78,7 @@ public class PlayerHealth : MonoBehaviour
         playerAudio.clip = deathClip;
         playerAudio.Play();
 
-        FindObjectOfType<ResetManager>().ShowEndPanel();
+        FindObjectOfType<ResetManager>().ShowDeathPanel();
 
         gameObject.SetActive(false);
     }
