@@ -81,6 +81,7 @@ public class PlayerShooting : MonoBehaviour
             if (hit.collider.CompareTag("Wall"))
             {
                 Debug.Log("Wall hit");
+                stopcast = true;
             }
         }
     }

@@ -10,8 +10,8 @@ public class Pathfinder : MonoBehaviour {
     public Transform endTransform;
     public MapGrid grid;
     public bool DebugMode = true;
-    public GameObject transformObj;
 
+    private GameObject transformObj;
     private Tile m_endTile;
     public Node[,] m_nodes;
     private Path currentPath;
@@ -21,15 +21,16 @@ public class Pathfinder : MonoBehaviour {
     {
         if (endTransform == null)
         {
-            GameObject obj = new GameObject();
-            obj.name = "DestinationPlayer";
-            endTransform = obj.transform;
-
-            transformObj = obj;
+            transformObj = new GameObject();
+            endTransform = transformObj.transform;
         }
 
         if(grid == null)
             grid = FindObjectOfType<MapGrid>();
+    }
+    public GameObject GetTransformObj()
+    {
+        return transformObj;
     }
 
     private void InitNodes(int x, int y)
