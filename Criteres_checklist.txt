@@ -2,12 +2,12 @@ DONE	Vous devez programmer un générateur de niveau de jeu; 30min
 pending	Votre jeu devra générer aléatoirement au moins un niveau; 2h
 DONE    Votre jeu devra contenir un écran d’accueil.  Cet écran doit brièvement présenter votre jeu et nous permettre de débuter une partie; 10min
 	    Votre jeu devra aussi contenir un écran de fin de partie affichant les résultats de notre partie (victoire, défaite, pointage, etc.) avec la possibilité de débuter une nouvelle partie; 30min
-pending	Votre jeu devra contenir des ennemis qui doivent avoir une certaine intelligence.  Ces derniers doivent suivre un chemin en particulier.  Basez-vous sur l’exemple fait en classe; 1h
+DONE    Votre jeu devra contenir des ennemis qui doivent avoir une certaine intelligence.  Ces derniers doivent suivre un chemin en particulier.  Basez-vous sur l’exemple fait en classe; 1h
 DONE    Sprites de vos tuiles doivent provenir d’une feuille de sprite dont le fond est transparent (vous pouvez rechercher des feuilles dont le fond est transparent ou tout simplement appliquer vous-même la transparence à votre feuille de sprite). 1h
 DONE    Votre jeu doit contenir un personnage principal à faire déplacer; 15min
 DONE	Votre personnage devra se déplacer sur un move on click à l’aide du pathfinding;
 DONE	Votre jeu doit permettre au joueur de faire des points.
 DONE	Le joueur doit avoir un certain nombre de pts de vie;
 DONE	Vos ennemis doivent pouvoir enlever des vies au joueur en entrant en collision avec lui; 30min
-pending Vous devez implanter la gestion sonore dans votre jeu.  Il devra donc y avoir une trame de fond et au moins deux sons associés à des actions de votre jeu. 
+DONE Vous devez implanter la gestion sonore dans votre jeu.  Il devra donc y avoir une trame de fond et au moins deux sons associés à des actions de votre jeu. 
 DONE    Follow cam 
