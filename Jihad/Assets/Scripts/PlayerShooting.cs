@@ -57,20 +57,23 @@ public class PlayerShooting : MonoBehaviour
         // Play the gun shot audioclip.
         gunAudio.Play();
 
-        Ray mseRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+        //Ray mseRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+        Vector3 clickPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        clickPoint.z = -1;
+        //Plane playerPlane = new Plane(Vector3.back, transform.position);
+        //float d;
+        //if (playerPlane.Raycast(mseRay, out d))
+        //{
+        //Vector3 hitPt = mseRay.GetPoint(d);
 
-        Plane playerPlane = new Plane(Vector3.back, transform.position);
-        float d;
-        if (playerPlane.Raycast(mseRay, out d))
-        {
-            Vector3 hitPt = mseRay.GetPoint(d);
-
-            Debug.DrawRay(transform.position, hitPt - transform.position, Color.red, 1f);
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, hitPt - transform.position);
+        Debug.DrawRay(transform.position, clickPoint - transform.position, Color.red, 1f);
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, clickPoint - transform.position);
             if (hit)
             {
                 gunLine.enabled = true;
-                gunLine.SetPosition(0, transform.position);
+            Vector3 origin = transform.position;
+            origin.z = -1;
+                gunLine.SetPosition(0, origin);
 
                 if (hit.collider.CompareTag("Enemy"))
                 {
@@ -84,15 +87,16 @@ public class PlayerShooting : MonoBehaviour
                         enemyHealth.TakeDamage(damagePerShot, hit.point);
                     }
 
-                    // Set the second position of the line renderer to the point the raycast hit.
-                    gunLine.SetPosition(1, (hitPt - transform.position) * range);
+                // Set the second position of the line renderer to the point the raycast hit.
+                
+                gunLine.SetPosition(1, (clickPoint));// * range);
                     targetedEnemy = hit.transform;
                     Debug.Log("Enemy");
                 }
 
                 else
                 {
-                    gunLine.SetPosition(1, (hitPt - transform.position) * range);
+                gunLine.SetPosition(1, (clickPoint));// * range);
                 }
 
                 if (hit.collider.CompareTag("Wall"))
@@ -100,6 +104,6 @@ public class PlayerShooting : MonoBehaviour
                     Debug.Log("Wall");
                 }
             }
-        }
+        //}
     }
 }

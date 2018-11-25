@@ -5,6 +5,7 @@ using System.Collections;
 public class EnemyAttack : MonoBehaviour
 {
     public int explosiveMultiplier = 1;               // The amount of health taken away per attack.
+    public GameObject explosion;
 
     Animator anim;                              // Reference to the animator component.
     GameObject player;                          // Reference to the player GameObject.
@@ -17,7 +18,6 @@ public class EnemyAttack : MonoBehaviour
     {
         // Setting up the references.
         player = GameObject.FindGameObjectWithTag("Player");
-        playerHealth = player.GetComponent<PlayerHealth>();
         enemyHealth = GetComponent<EnemyHealth>();
         anim = GetComponent<Animator>();
     }
@@ -49,8 +49,11 @@ public class EnemyAttack : MonoBehaviour
         while (i < hitColliders.Length)
         {
             float distance = (this.transform.position - hitColliders[i].transform.position).magnitude;
-            hitColliders[i].SendMessage("AddDamage", distance * explosiveMultiplier);
+            hitColliders[i].SendMessage("TakeDamage", distance * explosiveMultiplier);
             i++;
         }
+
+        Instantiate(explosion, this.transform.position, Quaternion.identity);
+        enemyHealth.Death();
     }
 }

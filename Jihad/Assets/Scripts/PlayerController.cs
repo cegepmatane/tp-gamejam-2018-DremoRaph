@@ -1,9 +1,8 @@
 ﻿using System;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour {
-
-    public float ptsVie;
+public class PlayerController : MonoBehaviour
+{
     public float speed = 1;
     public float distanceCheck = 0.05f;
 

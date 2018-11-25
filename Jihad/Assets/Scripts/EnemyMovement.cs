@@ -3,8 +3,6 @@ using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
 {
-
-    public float ptsVie;
     public float speed = 1;
     public float distanceCheck = 0.05f;
 
@@ -46,10 +44,7 @@ public class EnemyMovement : MonoBehaviour
         float distance = (this.transform.position - player.transform.position).magnitude;
         if (distance <= 6f)
             m_pathfinder.endTransform.position = player.transform.position;
-        else
-        {
-
-        }
+        
     }
 
     public void InitPathfinding()
@@ -68,11 +63,11 @@ public class EnemyMovement : MonoBehaviour
 
         Vector2 t_direction = (m_path.tiles[nextTileID].transform.position - this.transform.position);
 
-        if (t_direction != Vector2.zero)
-        {
-            float angle = Mathf.Atan2(t_direction.y, t_direction.x) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-        }
+        //if (t_direction != Vector2.zero)
+        //{
+        //    float angle = Mathf.Atan2(t_direction.y, t_direction.x) * Mathf.Rad2Deg;
+        //    transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        //}
         transform.Translate(t_direction.normalized * speed * Time.deltaTime);
         float c2 = t_direction.sqrMagnitude;
 
@@ -81,6 +76,7 @@ public class EnemyMovement : MonoBehaviour
             {
                 AIActive = false;
                 destinationReached = true;
+                FindNewTarget();
             }
     }
 

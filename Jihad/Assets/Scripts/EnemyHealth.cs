@@ -56,12 +56,12 @@ public class EnemyHealth : MonoBehaviour
         if (currentHealth <= 0)
         {
             // ... the enemy is dead.
-            Death();
+            GetComponent<EnemyAttack>().Explosion();
         }
     }
 
 
-    void Death()
+    public void Death()
     {
         isDead = true;
         boxCollider.isTrigger = true;
