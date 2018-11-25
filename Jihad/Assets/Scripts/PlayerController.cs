@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
@@ -16,9 +14,6 @@ public class PlayerController : MonoBehaviour {
     private Pathfinder m_pathfinder;
     private Animator anim;
     public GameObject sprite;
-
-    [Header("Sounds")]
-    public AudioClip deathSound;
 
     private int nextTileID = 1;
 

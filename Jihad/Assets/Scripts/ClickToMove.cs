@@ -9,7 +9,6 @@ namespace CompleteProject
     {
         public GameObject destinationPoint;
         public MapGrid grid;
-        public Camera cam;
 
         private PlayerController playerCtrl;
 
@@ -18,7 +17,6 @@ namespace CompleteProject
         // Use this for initialization
         void Awake()
         {
-            cam = GetComponent<Camera>();
             playerCtrl = GetComponent<PlayerController>();
         }
 

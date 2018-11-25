@@ -13,22 +13,14 @@ public class PlayerShooting : MonoBehaviour
     LineRenderer gunLine;                           // Reference to the line renderer.
     AudioSource gunAudio;                           // Reference to the audio source.
     //Light gunLight;                                 // Reference to the light component.
-    float effectsDisplayTime = 2f;                // The proportion of the timeBetweenBullets that the effects will display for.
+    float effectsDisplayTime = 1f;                // The proportion of the timeBetweenBullets that the effects will display for.
 
-    private bool enemyClicked;
     private Transform targetedEnemy;
 
     void Awake()
     {
-        // Create a layer mask for the Shootable layer.
-        //shootableMask = LayerMask.GetMask("Shootable");
-
-        // Set up the references.
-        //gunParticles = GetComponent<ParticleSystem>();
-        //gunParticles = GetComponent<ParticleSystem>();
         gunLine = GetComponentInChildren<LineRenderer>();
         gunAudio = GetComponent<AudioSource>();
-        //gunLight = GetComponent<Light>();
     }
 
     void Update()
@@ -64,19 +56,7 @@ public class PlayerShooting : MonoBehaviour
 
         // Play the gun shot audioclip.
         gunAudio.Play();
-        
 
-        //// Stop the particles from playing if they were, then start the particles.
-        //gunParticles.Stop();
-        //gunParticles.Play();
-
-        // Enable the line renderer and set it's first position to be the end of the gun.
-        
-        //gunLine.SetPosition(0, transform.position);
-
-        //// Set the shootRay so that it starts at the end of the gun and points forward from the barrel.
-        //shootRay.origin = transform.position;
-        //shootRay.direction = transform.forward;
         Ray mseRay = Camera.main.ScreenPointToRay(Input.mousePosition);
 
         Plane playerPlane = new Plane(Vector3.back, transform.position);
@@ -105,16 +85,14 @@ public class PlayerShooting : MonoBehaviour
                     }
 
                     // Set the second position of the line renderer to the point the raycast hit.
-                    gunLine.SetPosition(1, hit.point);
+                    gunLine.SetPosition(1, (hitPt - transform.position) * range);
                     targetedEnemy = hit.transform;
                     Debug.Log("Enemy");
-                    enemyClicked = true;
                 }
 
                 else
                 {
-                    enemyClicked = false;
-                    gunLine.SetPosition(1, transform.right * range);
+                    gunLine.SetPosition(1, (hitPt - transform.position) * range);
                 }
 
                 if (hit.collider.CompareTag("Wall"))
