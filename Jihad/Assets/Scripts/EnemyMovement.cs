@@ -28,10 +28,14 @@ public class EnemyMovement : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        InitPathfinding();
+        FollowPlayerIfClose();
     }
 
-
+    void FollowPlayerIfClose()
+    {
+        if ((player.transform.position - transform.position).magnitude <= 10)
+            InitPathfinding();
+    }
     // Update is called once per frame
     void Update()
     {
@@ -97,7 +101,7 @@ public class EnemyMovement : MonoBehaviour
             {
                 AIActive = false;
                 destinationReached = true;
-                InitPathfinding();
+                FollowPlayerIfClose()
             }
         //if (t_direction != Vector2.zero)
         //{

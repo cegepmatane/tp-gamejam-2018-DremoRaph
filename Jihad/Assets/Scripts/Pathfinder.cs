@@ -26,7 +26,6 @@ public class Pathfinder : MonoBehaviour {
             transformObj.name = "DestinationPlayer";
             transformObj.transform.position = transform.position;
             endTransform = transformObj.transform;
-
         }
 
         if(grid == null)
