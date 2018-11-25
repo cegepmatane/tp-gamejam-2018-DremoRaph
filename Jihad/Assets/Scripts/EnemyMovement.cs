@@ -47,7 +47,8 @@ public class EnemyMovement : MonoBehaviour
         if (destinationReached) return;
         if (AIActive)
             MovePathfinding();
-
+        else
+            FollowPlayerIfClose();
     }
 
     //public void FindNewTarget()
