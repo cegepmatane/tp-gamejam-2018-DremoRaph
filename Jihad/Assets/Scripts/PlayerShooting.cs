@@ -25,85 +25,59 @@ public class PlayerShooting : MonoBehaviour
 
     void Update()
     {
-        // Add the time since Update was last called to the timer.
         timer += Time.deltaTime;
-
-        // If the Fire1 button is being press and it's time to fire...
+        
         if (Input.GetButton("Fire1") && timer >= timeBetweenBullets)
         {
-            // ... shoot the gun.
             Shoot();
         }
-
-        // If the timer has exceeded the proportion of timeBetweenBullets that the effects should be displayed for...
+        
         if (timer >= timeBetweenBullets * effectsDisplayTime)
         {
-            // ... disable the effects.
             DisableEffects();
         }
     }
 
     public void DisableEffects()
     {
-        // Disable the line renderer and the light.
         gunLine.enabled = false;
     }
 
     void Shoot()
     {
-        // Reset the timer.
         timer = 0f;
-
-        // Play the gun shot audioclip.
+        
         gunAudio.Play();
-
-        //Ray mseRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+        
         Vector3 clickPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         clickPoint.z = -1;
-        //Plane playerPlane = new Plane(Vector3.back, transform.position);
-        //float d;
-        //if (playerPlane.Raycast(mseRay, out d))
-        //{
-        //Vector3 hitPt = mseRay.GetPoint(d);
 
         Debug.DrawRay(transform.position, clickPoint - transform.position, Color.red, 1f);
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, clickPoint - transform.position);
-            if (hit)
-            {
-                gunLine.enabled = true;
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, clickPoint - transform.position);
+        if (hit)
+        {
+            gunLine.enabled = true;
             Vector3 origin = transform.position;
             origin.z = -1;
-                gunLine.SetPosition(0, origin);
+            gunLine.SetPosition(0, origin);
 
-                if (hit.collider.CompareTag("Enemy"))
-                {
-                    // Try and find an EnemyHealth script on the gameobject hit.
-                    EnemyHealth enemyHealth = hit.collider.GetComponent<EnemyHealth>();
-
-                    // If the EnemyHealth component exist...
-                    if (enemyHealth != null)
-                    {
-                        // ... the enemy should take damage.
-                        enemyHealth.TakeDamage(damagePerShot, hit.point);
-                    }
-
-                // Set the second position of the line renderer to the point the raycast hit.
+            if (hit.collider.CompareTag("Enemy"))
+            {
+                EnemyHealth enemyHealth = hit.collider.GetComponent<EnemyHealth>();
                 
-                gunLine.SetPosition(1, (clickPoint));// * range);
-                    targetedEnemy = hit.transform;
-                    Debug.Log("Enemy");
-                }
-
-                else
-                {
-                gunLine.SetPosition(1, (clickPoint));// * range);
-                }
-
-                if (hit.collider.CompareTag("Wall"))
-                {
-                    Debug.Log("Wall");
-                }
+                if (enemyHealth != null)
+                    enemyHealth.TakeDamage(damagePerShot);
+                    
+                Debug.Log("Enemy hit");
             }
-        //}
+
+                
+            gunLine.SetPosition(1, (clickPoint));// * range);
+                
+            if (hit.collider.CompareTag("Wall"))
+            {
+                Debug.Log("Wall hit");
+            }
+        }
     }
 }

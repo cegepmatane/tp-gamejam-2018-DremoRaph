@@ -40,22 +40,19 @@ public class EnemyHealth : MonoBehaviour
     }
 
 
-    public void TakeDamage(int amount, Vector3 hitPoint)
+    public void TakeDamage(int amount)
     {
-        // If the enemy is dead...
         if (isDead)
-            // ... no need to take damage so exit the function.
             return;
-
-        // Play the hurt sound effect.
+        
         enemyAudio.Play();
-
-        // Reduce the current health by the amount of damage sustained.
+        
         currentHealth -= amount;
+        Debug.Log("enemy takes : " + amount);
 
         if (currentHealth <= 0)
         {
-            // ... the enemy is dead.
+            isDead = true;
             GetComponent<EnemyAttack>().Explosion();
         }
     }

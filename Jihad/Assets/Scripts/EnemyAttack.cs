@@ -5,6 +5,7 @@ using System.Collections;
 public class EnemyAttack : MonoBehaviour
 {
     public int explosiveMultiplier = 1;               // The amount of health taken away per attack.
+    public float radius = 1.5f;               // The amount of health taken away per attack.
     public GameObject explosion;
 
     Animator anim;                              // Reference to the animator component.
@@ -35,24 +36,38 @@ public class EnemyAttack : MonoBehaviour
 
     void Update()
     {
-        float distance = (this.transform.position - player.transform.position).magnitude;
+        float distance = (transform.position - player.transform.position).magnitude;
         // Add the time since Update was last called to the timer.
         if(distance <= 1.5f) Explosion();
     }
 
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+     
+        Gizmos.DrawWireSphere(transform.position, radius);
+    }
 
     public void Explosion()
     {
         // playerHealth.TakeDamage(explosiveMultiplier);
-        Collider[] hitColliders = Physics.OverlapSphere(this.transform.position, 3f);
+        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, radius);
         int i = 0;
         while (i < hitColliders.Length)
         {
-            float distance = (this.transform.position - hitColliders[i].transform.position).magnitude;
-            hitColliders[i].SendMessage("TakeDamage", distance * explosiveMultiplier);
+            float distance = 12 * (this.transform.position - hitColliders[i].transform.position).magnitude;
+            EnemyHealth enemyHealth = hitColliders[i].GetComponent<EnemyHealth>();
+            int dmgTaken = (int)distance * explosiveMultiplier;
+            if (enemyHealth != null)
+                enemyHealth.TakeDamage(dmgTaken);
+            else
+            {
+                PlayerHealth playerHealth = hitColliders[i].GetComponent<PlayerHealth>();
+                if (playerHealth != null)
+                    playerHealth.TakeDamage(dmgTaken);
+            }
             i++;
         }
-
         Instantiate(explosion, this.transform.position, Quaternion.identity);
         enemyHealth.Death();
     }
