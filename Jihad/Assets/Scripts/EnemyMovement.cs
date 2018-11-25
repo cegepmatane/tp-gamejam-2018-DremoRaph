@@ -35,8 +35,8 @@ public class EnemyMovement : MonoBehaviour
     void Update()
     {
         float speed = (transform.position - this.mLastPosition).magnitude / Time.deltaTime;
-        anim.SetFloat("MovementX", (transform.position - this.mLastPosition).x);
-        anim.SetFloat("MovementY", (transform.position - this.mLastPosition).y);
+        anim.SetFloat("MovementX", (transform.position - this.mLastPosition).x * 1000);
+        anim.SetFloat("MovementY", (transform.position - this.mLastPosition).y * 1000);
         this.mLastPosition = transform.position;
 
         if (AIActive)
