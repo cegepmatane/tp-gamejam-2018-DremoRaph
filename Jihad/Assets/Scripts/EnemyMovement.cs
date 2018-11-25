@@ -5,8 +5,8 @@ public class EnemyMovement : MonoBehaviour
 {
     public float speed = 1;
     public float distanceCheck = 0.05f;
-    public GameObject player;
 
+    private GameObject player;
     private Vector3 mLastPosition;
     private bool AIActive = true;
     private bool destinationReached = false;
@@ -21,9 +21,10 @@ public class EnemyMovement : MonoBehaviour
     void Start()
     {
         m_pathfinder = GetComponentInChildren<Pathfinder>();
-        grid = FindObjectOfType<MapGrid>();
-        InitPathfinding();
         anim = GetComponentInChildren<Animator>();
+        grid = FindObjectOfType<MapGrid>();
+        player = GameObject.FindGameObjectWithTag("Player");
+        FindNewTarget();
     }
 
     // Update is called once per frame
@@ -80,7 +81,7 @@ public class EnemyMovement : MonoBehaviour
     public void MovePathfinding()
     {
         if (m_path == null) return;
-        if (m_path.tiles.Count == 0) return;
+        //if (m_path.tiles.Count == 0) return;
 
         Vector2 t_direction = (m_path.tiles[nextTileID].transform.position - this.transform.position);
 
@@ -100,5 +101,4 @@ public class EnemyMovement : MonoBehaviour
                 FindNewTarget();
             }
     }
-
 }

@@ -66,6 +66,7 @@ public class EnemyHealth : MonoBehaviour
         enemyAudio.Play();
         ScoreManager.score += scoreValue;
         GetComponent<SpriteRenderer>().color = Color.black;
+        GetComponent<EnemyMovement>().enabled = false;
         Destroy(gameObject, 1.5f);
     }
 }

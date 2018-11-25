@@ -13,6 +13,7 @@ public class EnemyAttack : MonoBehaviour
     PlayerHealth playerHealth;                  // Reference to the player's health.
     EnemyHealth enemyHealth;                    // Reference to this enemy's health.
     bool playerInRange;                         // Whether player is within the trigger collider and can be attacked.
+    bool exploded = false;
 
 
     void Awake()
@@ -50,25 +51,27 @@ public class EnemyAttack : MonoBehaviour
 
     public void Explosion()
     {
+        if (exploded) return;
         // playerHealth.TakeDamage(explosiveMultiplier);
         Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, radius);
         int i = 0;
-        while (i < hitColliders.Length)
+        foreach (Collider2D col in hitColliders)
         {
-            float distance = 12 * (this.transform.position - hitColliders[i].transform.position).magnitude;
-            EnemyHealth enemyHealth = hitColliders[i].GetComponent<EnemyHealth>();
+            float distance = 12 - (this.transform.position - col.transform.position).magnitude;
+            if (distance == 0) continue;
+            EnemyHealth enemyHealth = col.GetComponent<EnemyHealth>();
             int dmgTaken = (int)distance * explosiveMultiplier;
             if (enemyHealth != null)
                 enemyHealth.TakeDamage(dmgTaken);
-            else
-            {
-                PlayerHealth playerHealth = hitColliders[i].GetComponent<PlayerHealth>();
-                if (playerHealth != null)
-                    playerHealth.TakeDamage(dmgTaken);
-            }
+            
+            PlayerHealth playerHealth = col.GetComponent<PlayerHealth>();
+            if (playerHealth != null)
+                playerHealth.TakeDamage(dmgTaken);
+            
             i++;
         }
         Instantiate(explosion, this.transform.position, Quaternion.identity);
+        exploded = true;
         enemyHealth.Death();
     }
 }

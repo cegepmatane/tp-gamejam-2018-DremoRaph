@@ -52,10 +52,13 @@ public class PlayerShooting : MonoBehaviour
         Vector3 clickPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         clickPoint.z = -1;
 
-        Debug.DrawRay(transform.position, clickPoint - transform.position, Color.red, 1f);
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, clickPoint - transform.position);
-        if (hit)
+        Debug.DrawRay(transform.position + transform.forward * 5, clickPoint - transform.position, Color.red, 1f);
+        RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position + transform.forward * 5, clickPoint - transform.position);
+        bool stopcast = false;
+        foreach(RaycastHit2D hit in hits)
         {
+            if (hit.collider.CompareTag("Player")) continue;
+            if (stopcast) break;
             gunLine.enabled = true;
             Vector3 origin = transform.position;
             origin.z = -1;
@@ -69,6 +72,7 @@ public class PlayerShooting : MonoBehaviour
                     enemyHealth.TakeDamage(damagePerShot);
                     
                 Debug.Log("Enemy hit");
+                stopcast = true;
             }
 
                 
