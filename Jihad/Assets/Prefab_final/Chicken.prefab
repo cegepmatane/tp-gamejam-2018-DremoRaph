@@ -41,7 +41,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4387072002108896}
-  - component: {fileID: 114902841916742856}
+  - component: {fileID: 114604313445794302}
   m_Layer: 9
   m_Name: Pathfinder
   m_TagString: Untagged
@@ -244,6 +244,18 @@ MonoBehaviour:
   sinkSpeed: 2.5
   scoreValue: 10
   deathClip: {fileID: 8300000, guid: ca66f35262b89974280c6c0ca88dd90f, type: 3}
+--- !u!114 &114604313445794302
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1948255853227564}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2dd27c7df735faf45a4fb057710b6f81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DebugMode: 1
 --- !u!114 &114800454669915070
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -258,20 +270,6 @@ MonoBehaviour:
   explosiveMultiplier: 7
   radius: 2
   explosion: {fileID: 100010, guid: 031d08f52af1daa4f929b85221519426, type: 2}
---- !u!114 &114902841916742856
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1948255853227564}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a11f60c44d9edd744937c6d7c9aa6a91, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  endTransform: {fileID: 0}
-  grid: {fileID: 0}
-  DebugMode: 1
 --- !u!212 &212929106121126370
 SpriteRenderer:
   m_ObjectHideFlags: 1

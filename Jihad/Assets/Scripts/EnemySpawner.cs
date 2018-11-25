@@ -11,8 +11,11 @@ public class EnemySpawner : MonoBehaviour {
     [SerializeField]
     private GameObject m_Enemy;
 
+    private List<Tile> spawnTiles;
+
     void Start()
     {
+        spawnTiles = FindObjectOfType<MapGrid>().GetSpawnTiles();
         StartCoroutine(SpawnEnemy(count, interval, delay));
     }
 
@@ -24,7 +27,8 @@ public class EnemySpawner : MonoBehaviour {
 
         for (; a_count > 0; a_count--)
         {
-            Instantiate(m_Enemy, m_SpawnPoint.position, Quaternion.identity);
+            int spawnPos = Random.RandomRange(0, spawnTiles.Count - 1);
+            Instantiate(m_Enemy, spawnTiles[spawnPos].transform.position, Quaternion.identity);
             yield return new WaitForSeconds(a_interval);
         }
     }
