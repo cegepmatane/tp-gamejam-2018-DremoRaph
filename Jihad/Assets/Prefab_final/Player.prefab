@@ -142,7 +142,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 24300002, guid: ea5fe4abd3a9d6e49a56ad4d7f908984,
     type: 2}
-  m_audioClip: {fileID: 8300000, guid: a4eb917b88b4f704781272ab56503215, type: 3}
+  m_audioClip: {fileID: 8300000, guid: ab30d7476c6fcf444ab235756456e92b, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -156,7 +156,7 @@ AudioSource:
   MaxDistance: 500
   Pan2D: 0
   rolloffMode: 0
-  BypassEffects: 0
+  BypassEffects: 1
   BypassListenerEffects: 0
   BypassReverbZones: 0
   rolloffCustomCurve:
@@ -266,15 +266,13 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1422036467704418}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fd6cf217ffa688d4c969db7ec010d2bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   startingHealth: 100
   currentHealth: 100
-  healthSlider: {fileID: 0}
-  damageImage: {fileID: 0}
   deathClip: {fileID: 8300000, guid: e6ee766ce781ed7488b46b06ecb064bc, type: 3}
   flashSpeed: 5
   flashColour: {r: 1, g: 0, b: 0, a: 0.1}
