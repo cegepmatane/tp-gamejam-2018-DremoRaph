@@ -33,7 +33,8 @@ public class EnemyMovement : MonoBehaviour
 
     void FollowPlayerIfClose()
     {
-        if ((player.transform.position - transform.position).magnitude <= 10)
+        if (AIActive) return;
+        if ((player.transform.position - transform.position).magnitude <= 15)
             InitPathfinding();
     }
     // Update is called once per frame
@@ -44,7 +45,6 @@ public class EnemyMovement : MonoBehaviour
         anim.SetFloat("MovementY", (transform.position - this.mLastPosition).y);
         this.mLastPosition = transform.position;
         
-        if (destinationReached) return;
         if (AIActive)
             MovePathfinding();
         else

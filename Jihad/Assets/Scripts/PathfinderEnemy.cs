@@ -7,8 +7,6 @@ using System;
 
 public class PathfinderEnemy : MonoBehaviour
 {
-
-    private Vector3 destination;
     private MapGrid grid;
     private GameObject player;
     public bool DebugMode = true;
@@ -22,7 +20,6 @@ public class PathfinderEnemy : MonoBehaviour
     {
         grid = FindObjectOfType<MapGrid>();
         player = GameObject.FindGameObjectWithTag("Player");
-        destination = player.transform.position;
     }
 
     private void InitNodes(int x, int y)

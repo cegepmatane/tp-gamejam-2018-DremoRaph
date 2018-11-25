@@ -48,7 +48,7 @@ public class PlayerController : MonoBehaviour
 
     public void MovePathfinding()
     {
-        if (m_path == null) return;
+        if (m_path.tiles == null) return;
         if (m_path.tiles.Count == 0) return;
 
         Vector2 t_direction = (m_path.tiles[nextTileID].transform.position - this.transform.position);
