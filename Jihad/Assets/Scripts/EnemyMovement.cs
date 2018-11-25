@@ -5,6 +5,7 @@ public class EnemyMovement : MonoBehaviour
 {
     public float speed = 1;
     public float distanceCheck = 0.05f;
+    public GameObject player;
 
     private Vector3 mLastPosition;
     private bool AIActive = true;
@@ -12,7 +13,7 @@ public class EnemyMovement : MonoBehaviour
     private Path m_path;
     private Pathfinder m_pathfinder;
     private Animator anim;
-    public GameObject player;
+    private MapGrid grid;
 
     private int nextTileID = 1;
 
@@ -20,7 +21,7 @@ public class EnemyMovement : MonoBehaviour
     void Start()
     {
         m_pathfinder = GetComponentInChildren<Pathfinder>();
-
+        grid = FindObjectOfType<MapGrid>();
         InitPathfinding();
         anim = GetComponentInChildren<Animator>();
     }
@@ -44,7 +45,27 @@ public class EnemyMovement : MonoBehaviour
         float distance = (this.transform.position - player.transform.position).magnitude;
         if (distance <= 6f)
             m_pathfinder.endTransform.position = player.transform.position;
+        else
+            m_pathfinder.endTransform.position = GetNearbyWalkableTile(transform.position);
+
+        InitPathfinding();
+    }
+
+    public Vector2 GetNearbyWalkableTile(Vector2 position)
+    {
+        bool targetAcquired = false;
+        Vector2 point = new Vector2();
+        while (!targetAcquired)
+        {
+            point = UnityEngine.Random.insideUnitSphere * 5;
+            point += position;
+            
+            MapGrid.GridPoint proutbanane = grid.WorldPointToGridPoint(point);
+            if (grid.tableauTiles[proutbanane.x, proutbanane.y].baseCost >= 0)
+                targetAcquired = true;
+        }
         
+        return point;
     }
 
     public void InitPathfinding()
