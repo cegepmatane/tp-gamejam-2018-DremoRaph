@@ -4,7 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class ResetManager : MonoBehaviour {
+public class ResetManager : MonoBehaviour
+{
     public GameObject deathPanel;
     public GameObject winPanel;
     public Button ResetButton;
@@ -21,13 +22,16 @@ public class ResetManager : MonoBehaviour {
     public void ShowDeathPanel()
     {
         deathPanel.SetActive(true);
+        string message = "Vous avez perdu :( Score: " + ScoreManager.score.ToString();
+        deathPanel.GetComponentInChildren<Text>().text = message;
         Time.timeScale = 0;
     }
 
     public void ShowWinPanel()
     {
         winPanel.SetActive(true);
-        winPanel.GetComponentInChildren<Text>().text = "Vous avez gagné! Score: " + ScoreManager.score;
+        string message = "Vous avez gagné! Score: " + ScoreManager.score.ToString();
+        winPanel.GetComponentInChildren<Text>().text = message;
         Time.timeScale = 0;
     }
 
