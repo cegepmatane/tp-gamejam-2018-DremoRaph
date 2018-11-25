@@ -15,7 +15,7 @@ public class EnemySpawner : MonoBehaviour {
 
     void Start()
     {
-        spawnTiles = FindObjectOfType<MapGrid>().GetSpawnTiles();
+        //spawnTiles = FindObjectOfType<MapGrid>().GetSpawnTiles();
         StartCoroutine(SpawnEnemy(count, interval, delay));
     }
 

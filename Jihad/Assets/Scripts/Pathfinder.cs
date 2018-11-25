@@ -7,7 +7,7 @@ using System;
 
 public class Pathfinder : MonoBehaviour {
 
-    public Transform endTransform;
+    private Transform endTransform;
     public MapGrid grid;
     public bool DebugMode = true;
 
@@ -17,12 +17,14 @@ public class Pathfinder : MonoBehaviour {
     private Path currentPath;
     private bool pathset = false;
 
-    public void Start()
+    public void Awake()
     {
         if (endTransform == null)
         {
+
             transformObj = new GameObject();
             endTransform = transformObj.transform;
+
         }
 
         if(grid == null)

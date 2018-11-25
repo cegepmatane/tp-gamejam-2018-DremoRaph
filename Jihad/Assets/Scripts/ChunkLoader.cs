@@ -139,7 +139,7 @@ public class ChunkLoader : MonoBehaviour {
         ClickToMove t_ClickToMove = t_NewPlayer.GetComponent<ClickToMove>();
         Pathfinder t_PathFinder = t_NewPlayer.GetComponentInChildren<Pathfinder>();
         t_PathFinder.grid = ChunkMapGrid;
-        t_ClickToMove.destinationPoint = t_PathFinder.transformObj;
+        t_ClickToMove.destinationPoint = t_PathFinder.GetTransformObj();
         
         t_ClickToMove.grid = ChunkMapGrid;
     }

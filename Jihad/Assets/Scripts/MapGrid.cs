@@ -7,27 +7,23 @@ public class MapGrid : MonoBehaviour
 {
     private List<Tile> Tiles;
     public Tile[,] tableauTiles;
-    public List<Tile> spawnTiles;
+    public GameObject Container;
 
     private void Awake()
     {
-        Tiles = new List<Tile>(GetComponentsInChildren<Tile>());
-        spawnTiles = new List<Tile>();
+
+    }
+    public void Activate()
+    {
+        Tiles = new List<Tile>(Container.GetComponentsInChildren<Tile>());
         tableauTiles = new Tile[GridSize, GridSize];
 
         foreach (Tile t_Tile in Tiles)
         {
             t_Tile.gridPoint = WorldPointToGridPoint(t_Tile.transform.position);
             tableauTiles[t_Tile.gridPoint.x, t_Tile.gridPoint.y] = t_Tile;
-            if (t_Tile.baseCost > 0) spawnTiles.Add(t_Tile);
         }
     }
-
-    public List<Tile> GetSpawnTiles()
-    {
-        return spawnTiles;
-    }
-
     public Tile GetTileFromGrid(GridPoint a_gridPoint)
     {
         return tableauTiles[a_gridPoint.x, a_gridPoint.y];
@@ -47,8 +43,8 @@ public class MapGrid : MonoBehaviour
             if (obj == null) return false;
             GridPoint objGP = (GridPoint)obj;
 
-            if(this.x != objGP.x) return false;
-            if(this.y != objGP.y) return false;
+            if (this.x != objGP.x) return false;
+            if (this.y != objGP.y) return false;
 
             return true;
         }
